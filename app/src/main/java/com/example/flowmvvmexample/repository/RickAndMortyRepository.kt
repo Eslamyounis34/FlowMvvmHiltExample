@@ -1,0 +1,20 @@
+package com.example.flowmvvmexample.repository
+
+import com.example.flowmvvmexample.data.ApiService
+import com.example.flowmvvmexample.models.RickResponse
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import retrofit2.Response
+import javax.inject.Inject
+
+class RickAndMortyRepository @Inject constructor(private val apiService: ApiService) {
+
+    fun getCharacters(): Flow<Response<RickResponse>> = flow {
+        val response = apiService.getCharacters()
+        emit(response)
+    }.flowOn(Dispatchers.IO)
+
+
+}
