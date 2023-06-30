@@ -7,11 +7,15 @@
     tools:context=".ui.main_activity.MainActivity">
 
  <androidx.recyclerview.widget.RecyclerView
-     android:layout_width="match_parent"
+     android:layout_width="0dp"
      android:layout_height="match_parent"
      app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
      android:id="@+id/characterRecycler"
+     android:orientation="vertical"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintStart_toStartOf="parent"
      tools:listitem="@layout/rick_morty_item"
+     android:layout_margin="4dp"
      app:spanCount="2"
      />
 

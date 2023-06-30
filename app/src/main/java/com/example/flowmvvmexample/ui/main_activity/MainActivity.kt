@@ -12,20 +12,28 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
+    lateinit var characterAdapter: CharacterAdapter
     val viewModel: MainActivityViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        setupRecycler()
         loadData()
     }
 
+    private fun setupRecycler() {
+        characterAdapter = CharacterAdapter()
+        binding.characterRecycler.apply {
+            adapter = characterAdapter
+            setHasFixedSize(true)
+        }
+    }
 
     private fun loadData() {
         lifecycleScope.launch {
-            viewModel.characters.collect {
-
+            viewModel.listData.collect {
+                characterAdapter.submitData(it)
                 Log.e("testReponse", it.toString())
             }
         }
