@@ -16,5 +16,13 @@ class RickAndMortyRepository @Inject constructor(private val apiService: ApiServ
         emit(response)
     }.flowOn(Dispatchers.IO)
 
+   suspend fun getAllCharacters(page:Int): Response<RickResponse> {
+        val response = apiService.getAllCharacters(page)
+       return  response
+
+    }
+
+
+
 
 }

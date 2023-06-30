@@ -18,13 +18,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
-    private val apiService: ApiService
+    private val repository: RickAndMortyRepository
 ) :
     ViewModel() {
 
     // TODO: following code for passing paging data list
     val listData = Pager(PagingConfig(pageSize = 1)) {
-        RickAndMortyRemoteSource(apiService)
+        RickAndMortyRemoteSource(repository)
 
     }.flow.cachedIn(viewModelScope)
 }

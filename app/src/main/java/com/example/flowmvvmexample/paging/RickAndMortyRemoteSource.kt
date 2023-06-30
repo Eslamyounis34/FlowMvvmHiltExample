@@ -4,9 +4,10 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.flowmvvmexample.data.ApiService
 import com.example.flowmvvmexample.models.RickAndMortyItem
+import com.example.flowmvvmexample.repository.RickAndMortyRepository
 
 class RickAndMortyRemoteSource(
-    private val apiService: ApiService
+    private val repo: RickAndMortyRepository
 ) : PagingSource<Int, RickAndMortyItem>() {
     override fun getRefreshKey(state: PagingState<Int, RickAndMortyItem>): Int? {
         return null
@@ -15,7 +16,7 @@ class RickAndMortyRemoteSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, RickAndMortyItem> {
         return try {
             val currentPage = params.key ?: 1
-            val response = apiService.getAllCharacters(currentPage)
+            val response = repo.getAllCharacters(currentPage)
             val responseData = mutableListOf<RickAndMortyItem>()
             val data = response.body()?.results ?: emptyList()
             responseData.addAll(data)
