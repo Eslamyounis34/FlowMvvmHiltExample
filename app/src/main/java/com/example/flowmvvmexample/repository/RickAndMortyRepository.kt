@@ -2,6 +2,7 @@ package com.example.flowmvvmexample.repository
 
 import com.example.flowmvvmexample.data.ApiService
 import com.example.flowmvvmexample.models.RickResponse
+import com.example.flowmvvmexample.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -19,10 +20,6 @@ class RickAndMortyRepository @Inject constructor(private val apiService: ApiServ
    suspend fun getAllCharacters(page:Int): Response<RickResponse> {
         val response = apiService.getAllCharacters(page)
        return  response
-
     }
-
-
-
 
 }

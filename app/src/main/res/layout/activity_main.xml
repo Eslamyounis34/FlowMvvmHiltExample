@@ -17,7 +17,7 @@
      app:layout_constraintTop_toTopOf="parent"
      app:layout_constraintStart_toStartOf="parent"
      android:layout_marginTop="24dp"
-     android:layout_marginStart="10dp"
+     android:layout_marginStart="16dp"
      android:textColor="#FFF"/>
 
  <androidx.recyclerview.widget.RecyclerView
@@ -33,6 +33,17 @@
      tools:listitem="@layout/rick_morty_item"
      android:layout_marginTop="20dp"
      app:spanCount="2"
+     />
+
+ <ProgressBar
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:background="#FFF"
+     android:id="@+id/progressPar"
+     app:layout_constraintTop_toTopOf="parent"
+     app:layout_constraintBottom_toBottomOf="parent"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintEnd_toEndOf="parent"
      />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
