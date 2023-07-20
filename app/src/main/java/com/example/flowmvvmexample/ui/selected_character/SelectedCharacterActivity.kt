@@ -19,21 +19,22 @@ class SelectedCharacterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_selected_character)
 
         initUi()
-        lifecycleScope.launch {
-            viewModel.liveCharacterData.collect { it ->
-                Log.e("testResponse", it.data.toString())
-            }
-        }
+        subscribeToCharacterResponse()
+
 
     }
-
     private fun initUi() {
         var id = intent.extras!!.getInt("characterId")
         lifecycleScope.launch {
             viewModel.getCharacterData(id)
         }
-
-
+    }
+    private fun subscribeToCharacterResponse() {
+        lifecycleScope.launch {
+            viewModel.liveCharacterData.collect { it ->
+                Log.e("testResponse", it.data.toString())
+            }
+        }
     }
 
 
