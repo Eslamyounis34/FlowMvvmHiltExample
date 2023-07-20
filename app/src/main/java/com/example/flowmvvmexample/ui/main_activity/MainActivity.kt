@@ -1,22 +1,22 @@
 package com.example.flowmvvmexample.ui.main_activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.LoadState
-import androidx.paging.PagingData
+import com.example.flowmvvmexample.common.utils.OnCharacterClick
 import com.example.flowmvvmexample.databinding.ActivityMainBinding
-import com.example.flowmvvmexample.utils.Resource
+import com.example.flowmvvmexample.common.utils.Resource
+import com.example.flowmvvmexample.ui.selected_character.SelectedCharacterActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() , OnCharacterClick {
     lateinit var binding: ActivityMainBinding
     lateinit var characterAdapter: CharacterAdapter
     val viewModel: MainActivityViewModel by viewModels()
@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         characterAdapter = CharacterAdapter()
         binding.characterRecycler.apply {
             adapter = characterAdapter
+            characterAdapter.setOnItemClickListener(this@MainActivity)
             setHasFixedSize(true)
 
         }
@@ -60,5 +61,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    override fun onClick(id: Int) {
+        var intent = Intent(this,SelectedCharacterActivity::class.java)
+        intent.putExtra("characterId", id)
+        startActivity(intent)
+      //  Toast.makeText(this, "$id", Toast.LENGTH_SHORT).show()
     }
 }

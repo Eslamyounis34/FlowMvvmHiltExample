@@ -1,8 +1,8 @@
 package com.example.flowmvvmexample.di
 
-import com.example.flowmvvmexample.data.ApiService
-import com.example.flowmvvmexample.repository.RickAndMortyRepository
-import com.example.flowmvvmexample.utils.Constants
+import com.example.flowmvvmexample.data.remote.ApiService
+import com.example.flowmvvmexample.data.repository.RickAndMortyRepository
+import com.example.flowmvvmexample.common.utils.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

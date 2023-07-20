@@ -1,4 +1,4 @@
-package com.example.flowmvvmexample.utils
+package com.example.flowmvvmexample.common.utils
 
 object Constants {
 

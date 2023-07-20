@@ -1,4 +1,4 @@
-package com.example.flowmvvmexample.models
+package com.example.flowmvvmexample.data.models
 
 data class RickAndMortyItem(
     val created: String,

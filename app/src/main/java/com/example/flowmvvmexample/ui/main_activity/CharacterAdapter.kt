@@ -6,8 +6,10 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.flowmvvmexample.common.utils.OnCharacterClick
 import com.example.flowmvvmexample.databinding.RickMortyItemBinding
-import com.example.flowmvvmexample.models.RickAndMortyItem
+import com.example.flowmvvmexample.data.models.RickAndMortyItem
+import kotlinx.coroutines.CoroutineScope
 
 class CharacterAdapter : PagingDataAdapter<RickAndMortyItem, CharacterAdapter.ImageViewHolder>(
     diffCallback
@@ -36,6 +38,9 @@ class CharacterAdapter : PagingDataAdapter<RickAndMortyItem, CharacterAdapter.Im
         }
     }
 
+    private var onItemClickListener: OnCharacterClick? = null
+
+
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val currChar = getItem(position)
 
@@ -43,6 +48,10 @@ class CharacterAdapter : PagingDataAdapter<RickAndMortyItem, CharacterAdapter.Im
 
             holder.itemView.apply {
                 characterName.text = "${currChar?.name}"
+
+                characterImage.setOnClickListener {
+                    onItemClickListener?.onClick(currChar!!.id)
+                }
 
                 val imageLink = currChar?.image
                 characterImage.load(imageLink) {
@@ -61,5 +70,10 @@ class CharacterAdapter : PagingDataAdapter<RickAndMortyItem, CharacterAdapter.Im
             )
         )
     }
+
+    fun setOnItemClickListener(listener: OnCharacterClick) {
+        onItemClickListener = listener
+    }
+
 
 }

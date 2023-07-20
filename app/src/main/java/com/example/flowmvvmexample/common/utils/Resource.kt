@@ -1,4 +1,4 @@
-package com.example.flowmvvmexample.utils
+package com.example.flowmvvmexample.common.utils
 
 sealed class Resource<T>(
     val data: T? = null,

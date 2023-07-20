@@ -2,10 +2,9 @@ package com.example.flowmvvmexample.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.flowmvvmexample.data.ApiService
-import com.example.flowmvvmexample.models.RickAndMortyItem
-import com.example.flowmvvmexample.repository.RickAndMortyRepository
-import com.example.flowmvvmexample.utils.Resource
+import com.example.flowmvvmexample.data.models.RickAndMortyItem
+import com.example.flowmvvmexample.data.repository.RickAndMortyRepository
+import com.example.flowmvvmexample.common.utils.Resource
 import kotlinx.coroutines.flow.MutableStateFlow
 
 class RickAndMortyRemoteSource(

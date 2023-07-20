@@ -1,8 +1,8 @@
-package com.example.flowmvvmexample.repository
+package com.example.flowmvvmexample.data.repository
 
-import com.example.flowmvvmexample.data.ApiService
-import com.example.flowmvvmexample.models.RickResponse
-import com.example.flowmvvmexample.utils.Resource
+import com.example.flowmvvmexample.data.models.RickAndMortyItem
+import com.example.flowmvvmexample.data.remote.ApiService
+import com.example.flowmvvmexample.data.models.RickResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -17,9 +17,16 @@ class RickAndMortyRepository @Inject constructor(private val apiService: ApiServ
         emit(response)
     }.flowOn(Dispatchers.IO)
 
-   suspend fun getAllCharacters(page:Int): Response<RickResponse> {
+    suspend fun getAllCharacters(page: Int): Response<RickResponse> {
         val response = apiService.getAllCharacters(page)
-       return  response
+        return response
     }
 
+    suspend fun getSingleCharacter(id: Int): Flow<RickAndMortyItem> {
+        return flow {
+            emit(
+                apiService.getSingleCharacter(id)
+            )
+        }
+    }
 }
