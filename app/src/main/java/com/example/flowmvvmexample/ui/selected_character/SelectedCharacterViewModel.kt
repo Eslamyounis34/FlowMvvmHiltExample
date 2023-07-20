@@ -15,7 +15,6 @@ import kotlinx.coroutines.flow.onStart
 
 import javax.inject.Inject
 @HiltViewModel
-
 class SelectedCharacterViewModel @Inject constructor(private val repo: RickAndMortyRepository) :
     ViewModel() {
 

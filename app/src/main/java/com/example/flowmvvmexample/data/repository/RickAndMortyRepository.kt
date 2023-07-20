@@ -27,6 +27,6 @@ class RickAndMortyRepository @Inject constructor(private val apiService: ApiServ
             emit(
                 apiService.getSingleCharacter(id)
             )
-        }
+        }.flowOn(Dispatchers.IO)
     }
 }
