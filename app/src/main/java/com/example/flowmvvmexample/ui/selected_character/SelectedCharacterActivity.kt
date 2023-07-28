@@ -68,7 +68,7 @@ class SelectedCharacterActivity : AppCompatActivity() {
                             characterName.text = it.data!!.name
                             characterImage.load(it.data.image) {
                                 crossfade(true)
-                                crossfade(1000)
+                                crossfade(5000)
                             }
 
                         }

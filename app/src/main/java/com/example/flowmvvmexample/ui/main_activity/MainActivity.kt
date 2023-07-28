@@ -16,6 +16,7 @@ import com.example.flowmvvmexample.common.utils.Resource
 import com.example.flowmvvmexample.common.utils.loadingAlert
 import com.example.flowmvvmexample.ui.selected_character.SelectedCharacterActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity(), OnCharacterClick {
         setContentView(binding.root)
         setupRecycler()
         loadData()
-       // observeLoadingState()
+        // observeLoadingState()
 
 
     }
@@ -70,6 +71,24 @@ class MainActivity : AppCompatActivity(), OnCharacterClick {
                 characterAdapter.submitData(it)
                 Log.e("testReponse", it.toString())
 
+            }
+        }
+        lifecycleScope.launch {
+            viewModel.isLoading.collect { loading ->
+                when (loading) {
+                    is Resource.DataError -> {
+                        Toast.makeText(this@MainActivity, "SomeThing Error", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+
+                    is Resource.Loading -> {
+                        binding.progressPar.visibility = View.VISIBLE
+                    }
+
+                    is Resource.Success -> {
+                        binding.progressPar.visibility = View.GONE
+                    }
+                }
             }
         }
 

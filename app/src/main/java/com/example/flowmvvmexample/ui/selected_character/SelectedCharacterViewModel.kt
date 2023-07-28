@@ -1,5 +1,9 @@
 package com.example.flowmvvmexample.ui.selected_character
 
+import android.app.Application
+import android.content.Intent
+import androidx.core.content.ContextCompat.startActivity
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,12 +19,13 @@ import kotlinx.coroutines.flow.onStart
 
 import javax.inject.Inject
 @HiltViewModel
-class SelectedCharacterViewModel @Inject constructor(private val repo: RickAndMortyRepository) :
-    ViewModel() {
+class SelectedCharacterViewModel @Inject constructor(private val repo: RickAndMortyRepository,application: Application) :
+    AndroidViewModel(application) {
 
     private val _characterData = MutableStateFlow<Resource<RickAndMortyItem>>(Resource.Loading())
     val liveCharacterData: StateFlow<Resource<RickAndMortyItem>>
         get() = _characterData
+
 
     suspend fun getCharacterData(id: Int) {
         repo.getSingleCharacter(id)
@@ -30,4 +35,5 @@ class SelectedCharacterViewModel @Inject constructor(private val repo: RickAndMo
             .collect { _characterData.value = it }
 
     }
+
 }
