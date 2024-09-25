@@ -73,24 +73,24 @@ class MainActivity : AppCompatActivity(), OnCharacterClick {
 
             }
         }
-        lifecycleScope.launch {
-            viewModel.isLoading.collect { loading ->
-                when (loading) {
-                    is Resource.DataError -> {
-                        Toast.makeText(this@MainActivity, "SomeThing Error", Toast.LENGTH_SHORT)
-                            .show()
-                    }
-
-                    is Resource.Loading -> {
-                        binding.progressPar.visibility = View.VISIBLE
-                    }
-
-                    is Resource.Success -> {
-                        binding.progressPar.visibility = View.GONE
-                    }
-                }
-            }
-        }
+//        lifecycleScope.launch {
+//            viewModel.isLoading.collect { loading ->
+//                when (loading) {
+//                    is Resource.DataError -> {
+//                        Toast.makeText(this@MainActivity, "SomeThing Error", Toast.LENGTH_SHORT)
+//                            .show()
+//                    }
+//
+//                    is Resource.Loading -> {
+//                        binding.progressPar.visibility = View.VISIBLE
+//                    }
+//
+//                    is Resource.Success -> {
+//                        binding.progressPar.visibility = View.GONE
+//                    }
+//                }
+//            }
+//        }
 
     }
 
